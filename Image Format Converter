@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Format Converter</title>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '279e78250b0c2a3d2607b0be54c03952',
+		'format' : 'iframe',
+		'height' : 160,
+		'width' : 600,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/279e78250b0c2a3d2607b0be54c03952/invoke.js"></script>
+  <style>
+    /* Light Mode (Default) */
+    :root {
+      --background-color: #f4f4f9;
+      --text-color: #333;
+      --container-bg: white;
+      --button-bg: #007bff;
+      --button-hover-bg: #0056b3;
+      --border-color: #ccc;
+    }
+
+    /* Dark Mode */
+    [data-theme="dark"] {
+      --background-color: #1a1a1a;
+      --text-color: #f4f4f9;
+      --container-bg: #333;
+      --button-bg: #555;
+      --button-hover-bg: #777;
+      --border-color: #666;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      background: var(--container-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    #themeToggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      cursor: pointer;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    #themeToggle:hover {
+      opacity: 0.8;
+    }
+
+    input, select, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: var(--container-bg);
+      color: var(--text-color);
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    button {
+      background-color: var(--button-bg);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--button-hover-bg);
+    }
+
+    #preview {
+      margin-top: 20px;
+    }
+
+    #preview img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    #downloadLink {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: var(--button-bg);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    #downloadLink:hover {
+      background-color: var(--button-hover-bg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Image Format Converter</h1>
+      <button id="themeToggle">🌙 Dark Mode</button>
+    </div>
+    <input type="file" id="imageInput" accept="image/*" />
+    <select id="formatSelect">
+      <option value="jpeg">JPEG</option>
+      <option value="png">PNG</option>
+      <option value="webp">WebP</option>
+    </select>
+    <button id="convertButton">Convert</button>
+    <a id="downloadLink" style="display:none;">Download</a>
+    <div id="preview"></div>
+  </div>
+<script type="text/javascript">
+	atOptions = {
+		'key' : '35c2b93592ff0919aaca637d5394df89',
+		'format' : 'iframe',
+		'height' : 468,
+		'width' : 60,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.highperformanceformat.com/35c2b93592ff0919aaca637d5394df89/invoke.js"></script>
+  <script>
+    // Light/Dark Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    themeToggle.addEventListener('click', () => {
+      const isDarkMode = body.getAttribute('data-theme') === 'dark';
+      body.setAttribute('data-theme', isDarkMode ? 'light' : 'dark');
+      themeToggle.textContent = isDarkMode ? '🌙 Dark Mode' : '☀️ Light Mode';
+    });
+
+    // Image Conversion Logic
+    document.getElementById('convertButton').addEventListener('click', function () {
+      const fileInput = document.getElementById('imageInput');
+      const formatSelect = document.getElementById('formatSelect');
+      const downloadLink = document.getElementById('downloadLink');
+      const preview = document.getElementById('preview');
+
+      if (fileInput.files.length === 0) {
+        alert('Please upload an image first.');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const img = new Image();
+        img.src = event.target.result;
+
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+
+          const format = formatSelect.value;
+          canvas.toBlob(function (blob) {
+            const url = URL.createObjectURL(blob);
+            downloadLink.href = url;
+            downloadLink.download = `converted_image.${format}`;
+            downloadLink.style.display = 'block';
+            downloadLink.textContent = `Download as ${format.toUpperCase()}`;
+            preview.innerHTML = `<img src="${url}" alt="Converted Image">`;
+          }, `image/${format}`, 0.9);
+        };
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
